@@ -32,9 +32,5 @@ yarn
 yarn start
 ```
 
-## Notas
-
-Devido ao tempo e as features que coloquei, não deu tempo de deixar a aplicação responsiva para mobile, farei futuros commits para esse déficit, peço perdão.
-
 ## Desenvolvedor
-Kleber Fernand dos Santos Canedo, animações e estilos feitos todos a mão por mim.
+Kleber Fernando dos Santos Canedo, animações e estilos feitos todos a mão por mim.
