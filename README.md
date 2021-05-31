@@ -9,39 +9,25 @@ Foi utilizada um ferramenta chamada kool para execução do docker e rodar o Bac
 Para rodar o BackEnd:
 
 ```bash
-docker-compose up
-```
-e depois
-```bash
 composer install
-```
-e depois
-```bash
-./bin/console doctrine:migrations:migrate
+php ./bin/console doctrine:database:create
+php ./bin/console doctrine:migrations:migrate
 ```
 Com o kool
 ```bash
 kool run setup
-```
-e depois
-```bash
+kool exec app ./bin/console doctrine:database:create
 kool exec app ./bin/console doctrine:migrations:migrate
 ```
 
 Para rodar o FrontEnd:
 ```bash
 npm install
-```
-ou
-```bash
-yarn
-```
-e depois:
-```bash
 npm run start
 ```
 ou
 ```bash
+yarn
 yarn start
 ```
 
