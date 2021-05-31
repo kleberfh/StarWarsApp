@@ -13,11 +13,15 @@ docker-compose up
 ```
 e depois
 ```bash
+composer install
+```
+e depois
+```bash
 ./bin/console doctrine:migrations:migrate
 ```
 Com o kool
 ```bash
-kool start
+kool run setup
 ```
 e depois
 ```bash
