@@ -8,7 +8,7 @@ import { AiFillHeart } from 'react-icons/ai';
 import { removeFavoriteCharacter } from '../../../Services/database';
 import { Creators as Characters } from '../../../Store/Ducks/characters';
 import { Creators as Selected } from '../../../Store/Ducks/selecterCharacters';
-import { showSuccess, showWarning } from '../../../Global/RequestResponseHandler';
+import { showSuccess } from '../../../Global/RequestResponseHandler';
 
 const CharacterCard = ({ character, isFavorite }) => {
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ const CharacterCard = ({ character, isFavorite }) => {
   const handleRemoveFavorite = () => {
     if (!removing) {
       setRemoving(true);
-      showWarning(`Removing ${character.name} from your favorites`);
       removeFavoriteCharacter(character.id)
         .then(() => {
           showSuccess(`Removed ${character.name} successfully`);
@@ -88,14 +87,15 @@ const CharacterCard = ({ character, isFavorite }) => {
           More details
         </Link>
         {isFavorite && (
-          <button
+          <motion.button
             type="button"
+            whileTap={{ scale: 0.8 }}
             title="Remove from favorites"
             className="focus:outline-none"
             onClick={() => handleRemoveFavorite()}
           >
             <AiFillHeart size={28} color="#ED4956" />
-          </button>
+          </motion.button>
         )}
       </div>
     </motion.div>

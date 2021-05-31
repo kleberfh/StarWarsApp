@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { getAllCharacters, searchCharacter } from '../../Services/swapi';
 import { Creators as CharactersActions } from '../../Store/Ducks/characters';
@@ -9,8 +10,21 @@ const SearchBar = () => {
   const [query, setQuery] = useState('');
   const [search, setSearch] = useState(false);
 
+  const queryCharacters = (value) => {
+    searchCharacter(value)
+      .then((response) => {
+        setSearch(true);
+        dispatch(CharactersActions.insertCharacter(response.data));
+      });
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedQuery = useCallback(debounce((nextValue) => queryCharacters(nextValue), 1000), []);
+
   const handleQueryChange = (e) => {
+    const { value: nextValue } = e.target;
     setQuery(e.target.value);
+    debouncedQuery(nextValue);
   };
 
   const handleClearSearch = () => {
@@ -24,11 +38,7 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    searchCharacter(query)
-      .then((response) => {
-        setSearch(true);
-        dispatch(CharactersActions.insertCharacter(response.data));
-      });
+    queryCharacters(query);
   };
 
   return (

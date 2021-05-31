@@ -11,7 +11,7 @@ import { BiChevronLeft } from 'react-icons/bi';
 import { getInfoFromUrl } from '../../../Services/swapi';
 import FilmCard from '../../../Global/FilmCard';
 import { findFavoriteCharacter, removeFavoriteCharacter, setFavoriteCharacter } from '../../../Services/database';
-import { showSuccess, showWarning } from '../../../Global/RequestResponseHandler';
+import { showSuccess } from '../../../Global/RequestResponseHandler';
 
 const DetailCard = ({ character }) => {
   const history = useHistory();
@@ -36,7 +36,6 @@ const DetailCard = ({ character }) => {
     if (!verify) {
       if (!saved) {
         setStatus('Saving');
-        showWarning(`Saving ${character.name} as one of your favorites.`);
         setFavoriteCharacter({
           name: character.name,
           height: character.height,
@@ -63,7 +62,6 @@ const DetailCard = ({ character }) => {
           });
       } else {
         setStatus('Removing');
-        showWarning(`Removing ${character.name} from your favorites.`);
         removeFavoriteCharacter(savedId)
           .then(() => {
             showSuccess(`Removed ${character.name} successfully`);
@@ -135,9 +133,10 @@ const DetailCard = ({ character }) => {
               <BiChevronLeft size={28} />
               Back
             </button>
-            <button
+            <motion.button
               type="button"
               onClick={handleSave}
+              whileTap={{ scale: 0.8 }}
               className="w-1/6 text-lg flex flex-row justify-end focus:outline-none"
             >
               <p className="mx-2">
@@ -164,7 +163,7 @@ const DetailCard = ({ character }) => {
                   <AiOutlineHeart size={28} />
                 </motion.div>
               )}
-            </button>
+            </motion.button>
           </div>
         </div>
         <div className="h-3/6">

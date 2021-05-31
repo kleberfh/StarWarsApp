@@ -4,10 +4,12 @@ import { useSelector } from 'react-redux';
 import CharacterCard from './CharacterCard';
 
 import Porg from '../../Assets/Images/porg.png';
+import Pages from '../../Global/Pages';
 
 const Characters = () => {
-  const isFavorites = useSelector((state) => state.characters.favorites);
+  const response = useSelector((state) => state.characters);
   const characters = useSelector((state) => state.characters.results);
+  const isFavorites = useSelector((state) => state.characters.favorites);
 
   return (
     <div className="w-full flex flex-col md:flex-row md:flex-wrap mt-10 md:justify-center">
@@ -21,7 +23,12 @@ const Characters = () => {
       ) : map(characters, (character, key) => (
         <CharacterCard key={key} character={character} isFavorite={isFavorites} />
       ))}
-
+      <Pages
+        count={response.count}
+        next={response.next}
+        results={characters.length}
+        previous={response.previous}
+      />
     </div>
   );
 };
