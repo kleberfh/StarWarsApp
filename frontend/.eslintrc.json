@@ -1,0 +1,53 @@
+{
+  "env": {
+    "node": true,
+    "es2020": true,
+    "browser": true,
+    "commonjs": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/style",
+    "plugin:jest/recommended",
+    "plugin:react/recommended",
+    "airbnb"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "jest",
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".js"
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "jest": {
+      "version": 26
+    },
+    "react": {
+      "version": "detect"
+    },
+    "linkComponents": [
+      {
+        "name": "Link",
+        "linkAttribute": "to"
+      }
+    ]
+  }
+}

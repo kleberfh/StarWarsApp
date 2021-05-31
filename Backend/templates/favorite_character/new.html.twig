@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New FavoriteCharacter{% endblock %}
+
+{% block body %}
+    <h1>Create new FavoriteCharacter</h1>
+
+    {{ include('favorite_character/_form.html.twig') }}
+
+    <a href="{{ path('favorite_character_index') }}">back to list</a>
+{% endblock %}

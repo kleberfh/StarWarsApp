@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit FavoriteCharacter{% endblock %}
+
+{% block body %}
+    <h1>Edit FavoriteCharacter</h1>
+
+    {{ include('favorite_character/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('favorite_character_index') }}">back to list</a>
+
+    {{ include('favorite_character/_delete_form.html.twig') }}
+{% endblock %}

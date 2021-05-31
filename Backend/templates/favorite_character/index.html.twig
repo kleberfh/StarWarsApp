@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FavoriteCharacter index{% endblock %}
+
+{% block body %}
+    <h1>FavoriteCharacter index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Height</th>
+                <th>Mass</th>
+                <th>Hair_color</th>
+                <th>Skin_color</th>
+                <th>Eye_color</th>
+                <th>Birth_year</th>
+                <th>Gender</th>
+                <th>Homeworld</th>
+                <th>Films</th>
+                <th>Species</th>
+                <th>Vehicles</th>
+                <th>Starships</th>
+                <th>Url</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for favorite_character in favorite_characters %}
+            <tr>
+                <td>{{ favorite_character.id }}</td>
+                <td>{{ favorite_character.name }}</td>
+                <td>{{ favorite_character.height }}</td>
+                <td>{{ favorite_character.mass }}</td>
+                <td>{{ favorite_character.hairColor }}</td>
+                <td>{{ favorite_character.skinColor }}</td>
+                <td>{{ favorite_character.eyeColor }}</td>
+                <td>{{ favorite_character.birthYear }}</td>
+                <td>{{ favorite_character.gender }}</td>
+                <td>{{ favorite_character.homeworld }}</td>
+                <td>{{ favorite_character.films ? favorite_character.films|join(', ') : '' }}</td>
+                <td>{{ favorite_character.species ? favorite_character.species|join(', ') : '' }}</td>
+                <td>{{ favorite_character.vehicles ? favorite_character.vehicles|join(', ') : '' }}</td>
+                <td>{{ favorite_character.starships ? favorite_character.starships|join(', ') : '' }}</td>
+                <td>{{ favorite_character.url }}</td>
+                <td>
+                    <a href="{{ path('favorite_character_show', {'id': favorite_character.id}) }}">show</a>
+                    <a href="{{ path('favorite_character_edit', {'id': favorite_character.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('favorite_character_new') }}">Create new</a>
+{% endblock %}

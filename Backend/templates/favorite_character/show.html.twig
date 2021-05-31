@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FavoriteCharacter{% endblock %}
+
+{% block body %}
+    <h1>FavoriteCharacter</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ favorite_character.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ favorite_character.name }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ favorite_character.height }}</td>
+            </tr>
+            <tr>
+                <th>Mass</th>
+                <td>{{ favorite_character.mass }}</td>
+            </tr>
+            <tr>
+                <th>Hair_color</th>
+                <td>{{ favorite_character.hairColor }}</td>
+            </tr>
+            <tr>
+                <th>Skin_color</th>
+                <td>{{ favorite_character.skinColor }}</td>
+            </tr>
+            <tr>
+                <th>Eye_color</th>
+                <td>{{ favorite_character.eyeColor }}</td>
+            </tr>
+            <tr>
+                <th>Birth_year</th>
+                <td>{{ favorite_character.birthYear }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ favorite_character.gender }}</td>
+            </tr>
+            <tr>
+                <th>Homeworld</th>
+                <td>{{ favorite_character.homeworld }}</td>
+            </tr>
+            <tr>
+                <th>Films</th>
+                <td>{{ favorite_character.films ? favorite_character.films|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Species</th>
+                <td>{{ favorite_character.species ? favorite_character.species|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Vehicles</th>
+                <td>{{ favorite_character.vehicles ? favorite_character.vehicles|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Starships</th>
+                <td>{{ favorite_character.starships ? favorite_character.starships|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ favorite_character.url }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('favorite_character_index') }}">back to list</a>
+
+    <a href="{{ path('favorite_character_edit', {'id': favorite_character.id}) }}">edit</a>
+
+    {{ include('favorite_character/_delete_form.html.twig') }}
+{% endblock %}

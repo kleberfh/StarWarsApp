@@ -1,0 +1,16 @@
+favorites_character_list:
+  path: /api/v1/favorite/character
+  controller: App\Controller\FavoriteCharacterController:index
+  methods: [GET]
+favorites_character_create:
+  path: /api/v1/favorite/character
+  controller: App\Controller\FavoriteCharacterController:create
+  methods: [POST]
+favorites_character_find:
+  path: /api/v1/favorite/character/find
+  controller: App\Controller\FavoriteCharacterController:find
+  methods: [ POST ]
+favorites_character_delete:
+  path: /api/v1/favorite/character/{id}
+  controller: App\Controller\FavoriteCharacterController:delete
+  methods: [DELETE]
