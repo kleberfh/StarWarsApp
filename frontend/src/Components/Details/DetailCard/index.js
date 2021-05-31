@@ -109,116 +109,216 @@ const DetailCard = ({ character }) => {
   }, [homeworld]);
 
   return (
-    <motion.div className="flex flex-row bg-gray-300 p-6 rounded-lg" layout>
-      <div className="w-2/6 self-center">
-        <motion.img
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          src={character.image}
-          className="rounded-lg"
-          alt="character"
-        />
-      </div>
-      <div className="flex flex-col w-4/6 pl-10 divide-y-2 divide-gray-400">
-        <div className="mb-4">
-          <div className="flex flex-row px-2">
-            <div className="w-5/6 text-3xl">
-              {character.name}
-            </div>
-            <button
-              type="button"
-              className="w-1/6 text-lg flex flex-row justify-end focus:outline-none"
-              onClick={() => history.goBack()}
-            >
-              <BiChevronLeft size={28} />
-              Back
-            </button>
-            <motion.button
-              type="button"
-              onClick={handleSave}
-              whileTap={{ scale: 0.8 }}
-              className="w-1/6 text-lg flex flex-row justify-end focus:outline-none"
-            >
-              <p className="mx-2">
-                {/* eslint-disable-next-line no-nested-ternary */}
-                {status}
-              </p>
-              {saved && (
-                (
+    <div className="">
+      <motion.div className="hidden md:flex flex-row bg-gray-300 p-6 rounded-lg" layout>
+        <div className="w-2/6 self-center">
+          <motion.img
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            src={character.image}
+            className="rounded-lg"
+            alt="character"
+          />
+        </div>
+        <div className="flex flex-col w-4/6 pl-10 divide-y-2 divide-gray-400">
+          <div className="mb-4">
+            <div className="flex flex-row px-2">
+              <div className="w-5/6 text-3xl">
+                {character.name}
+              </div>
+              <button
+                type="button"
+                className="w-1/6 text-lg flex flex-row justify-end focus:outline-none"
+                onClick={() => history.goBack()}
+              >
+                <BiChevronLeft size={28} />
+                Back
+              </button>
+              <motion.button
+                type="button"
+                onClick={handleSave}
+                whileTap={{ scale: 0.8 }}
+                className="w-1/6 text-lg flex flex-row justify-end focus:outline-none"
+              >
+                <p className="mx-2">
+                  {/* eslint-disable-next-line no-nested-ternary */}
+                  {status}
+                </p>
+                {saved && (
+                  (
+                    <motion.div
+                      exit={{ opacity: 0 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                    >
+                      <AiFillHeart size={28} color="#ED4956" />
+                    </motion.div>
+                  )
+                )}
+                {!saved && (
                   <motion.div
                     exit={{ opacity: 0 }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                   >
-                    <AiFillHeart size={28} color="#ED4956" />
+                    <AiOutlineHeart size={28} />
                   </motion.div>
-                )
-              )}
-              {!saved && (
+                )}
+              </motion.button>
+            </div>
+          </div>
+          <div className="h-3/6">
+            <p className="text-center text-xl">
+              Informations
+            </p>
+            <div className="flex flex-col p-2 space-y-1">
+              <div className="text-lg capitalize">
+                Gender:
+                {' '}
+                {character.gender}
+              </div>
+              <div className="text-lg">
+                Height:
+                {' '}
+                {character.height}
+                {' '}
+                Cm
+              </div>
+              <div className="text-lg">
+                Weight:
+                {' '}
+                {character.mass}
+                {' '}
+                Kg
+              </div>
+              <div className="text-lg">
+                Specie:
+                {' '}
+                {character.species.length === 0 ? 'Human' : specie}
+              </div>
+              <div className="text-lg">
+                Birth year:
+                {' '}
+                {character.birth_year}
+              </div>
+              <div className="text-lg">
+                Homeworld:
+                {' '}
+                {homeworld && homeworld.name}
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <p className="text-center text-xl mt-2">
+              Movies
+            </p>
+            <div className="flex flex-row">
+              {character.films.map((film, key) => (
+                <FilmCard orchestration={key} url={film} key={key.toString()} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      <motion.div className="flex md:hidden mt-8 flex-col bg-gray-300 p-4 rounded-lg" layout>
+        <div className="flex flex-row mt-1 mb-4 justify-between">
+          <button
+            type="button"
+            className="text-lg flex flex-row focus:outline-none"
+            onClick={() => history.goBack()}
+          >
+            <BiChevronLeft size={28} />
+            Back
+          </button>
+          <motion.button
+            type="button"
+            onClick={handleSave}
+            whileTap={{ scale: 0.8 }}
+            className="text-lg flex flex-row focus:outline-none"
+          >
+            <p className="mx-2">
+              {/* eslint-disable-next-line no-nested-ternary */}
+              {status}
+            </p>
+            {saved && (
+              (
                 <motion.div
                   exit={{ opacity: 0 }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <AiOutlineHeart size={28} />
+                  <AiFillHeart size={28} color="#ED4956" />
                 </motion.div>
-              )}
-            </motion.button>
+              )
+            )}
+            {!saved && (
+              <motion.div
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <AiOutlineHeart size={28} />
+              </motion.div>
+            )}
+          </motion.button>
+        </div>
+        <div className="flex flex-row">
+          <motion.img
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            src={character.image}
+            className="w-3/6 rounded-lg"
+            alt="character"
+          />
+          <div className="flex flex-col ml-4 w-full">
+            <div className="w-full text-xl">
+              {character.name}
+            </div>
+            <div className="flex flex-col">
+              <div className="text-base capitalize">
+                Gender:
+                {' '}
+                {character.gender}
+              </div>
+              <div className="text-base">
+                Height:
+                {' '}
+                {character.height}
+                {' '}
+                Cm
+              </div>
+              <div className="text-base">
+                Weight:
+                {' '}
+                {character.mass}
+                {' '}
+                Kg
+              </div>
+              <div className="text-base">
+                Specie:
+                {' '}
+                {character.species.length === 0 ? 'Human' : specie}
+              </div>
+              <div className="text-base">
+                Homeworld:
+                {' '}
+                {homeworld && homeworld.name}
+              </div>
+            </div>
           </div>
         </div>
-        <div className="h-3/6">
-          <p className="text-center text-xl">
-            Informations
-          </p>
-          <div className="flex flex-col p-2 space-y-1">
-            <div className="text-lg capitalize">
-              Gender:
-              {' '}
-              {character.gender}
-            </div>
-            <div className="text-lg">
-              Height:
-              {' '}
-              {character.height}
-              {' '}
-              Cm
-            </div>
-            <div className="text-lg">
-              Weight:
-              {' '}
-              {character.mass}
-              {' '}
-              Kg
-            </div>
-            <div className="text-lg">
-              Specie:
-              {' '}
-              {character.species.length === 0 ? 'Human' : specie}
-            </div>
-            <div className="text-lg">
-              Birth year:
-              {' '}
-              {character.birth_year}
-            </div>
-            <div className="text-lg">
-              Homeworld:
-              {' '}
-              {homeworld && homeworld.name}
-            </div>
-          </div>
-        </div>
-        <div className="">
+        <div className="flex flex-col">
           <p className="text-center text-xl mt-2">
             Movies
           </p>
-          <div className="flex flex-row">
+          <div className="flex flex-row mt-2 md:mt-0 overflow-scrool">
             {character.films.map((film, key) => (
               <FilmCard orchestration={key} url={film} key={key.toString()} />
             ))}
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

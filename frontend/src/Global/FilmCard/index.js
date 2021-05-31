@@ -25,7 +25,7 @@ const FilmCard = ({ url, orchestration }) => {
       transition={{ delay: orchestration / 10 }}
       className="flex flex-col w-full text-center items-center"
     >
-      <img className="h-40" src={getEpisodeImage(movie.episode_id)} alt={movie.title} />
+      <img className="h-20 md:h-40" src={getEpisodeImage(movie.episode_id)} alt={movie.title} />
       <p>
         {movie.title}
       </p>

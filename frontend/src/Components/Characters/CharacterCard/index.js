@@ -48,7 +48,7 @@ const CharacterCard = ({ character, isFavorite }) => {
       className="flex flex-col w-52 p-4 bg-gray-300 mb-8 mx-4 rounded-3xl"
     >
       <div
-        className="h-40 rounded-xl bg-cover bg-top"
+        className="h-40 rounded-xl bg-contain bg-no-repeat bg-center lg:bg-cover lg:bg-top"
         style={{
           backgroundImage: `url(${process.env.REACT_APP_IMAGE_API_URL}/${characterApiId}.jpg)`,
         }}

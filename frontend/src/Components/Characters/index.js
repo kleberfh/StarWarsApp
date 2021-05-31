@@ -12,7 +12,7 @@ const Characters = () => {
   const isFavorites = useSelector((state) => state.characters.favorites);
 
   return (
-    <div className="w-full flex flex-col md:flex-row md:flex-wrap mt-10 md:justify-center">
+    <div className="w-full flex flex-wrap mt-10 justify-center">
       {characters.length === 0 ? (
         <div className="flex flex-col w-full items-center -mt-10">
           <img className="w-40" src={Porg} alt="porg" />

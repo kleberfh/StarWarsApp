@@ -33,6 +33,9 @@ const Favorites = () => {
       getFavoritesCharacter()
         .then((response) => {
           dispatch(CharactersActions.insertCharacter({
+            previous: '',
+            next: '',
+            count: response.data.length,
             results: fixArrays(response),
             favorites: true,
           }));
